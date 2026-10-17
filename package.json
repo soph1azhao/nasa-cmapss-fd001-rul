@@ -1,0 +1,11 @@
+{
+  "name": "nasa-cmapss-fd001-rul-storage-dev",
+  "private": true,
+  "description": "Local Microsoft Azurite tooling only",
+  "scripts": {
+    "azurite": "python3 scripts/start_azurite.py"
+  },
+  "devDependencies": {
+    "azurite": "3.37.0"
+  }
+}

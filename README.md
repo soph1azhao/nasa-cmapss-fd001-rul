@@ -150,3 +150,9 @@ tests/       Schema, target, causal-prefix, engine split, preprocessing,
 
 - Saxena, A. and Goebel, K. (2008). *Turbofan Engine Degradation Simulation Data Set*. NASA Prognostics Data Repository, NASA Ames Research Center. [Official dataset repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/).
 - Saxena, A., Goebel, K., Simon, D., and Eklund, N. (2008). *Damage Propagation Modeling for Aircraft Engine Run-to-Failure Simulation*. International Conference on Prognostics and Health Management. Included in the official archive.
+
+## Azure Blob Storage Extension
+
+**Tested locally using Azurite.** The Azure Python SDK uploads three allowlisted derived artifacts to a private local Blob container, lists and downloads them, and verifies SHA-256 hashes and exact byte equality. **Local emulator verified; real Azure not verified.** No Azure cloud resources were provisioned, and the model was not trained on Azure or deployed to Azure infrastructure. The existing experiment and figures are unchanged.
+
+See the [extension guide](docs/azure_storage_extension.md) for local setup, actual integration-test evidence, generated environment-based credentials, and the future `DefaultAzureCredential` option for an authorized real account.

@@ -1,0 +1,86 @@
+{
+  "verification_scope": "LOCAL EMULATOR VERIFIED",
+  "real_azure_used": false,
+  "paid_resources_created": false,
+  "date_local": "2026-10-16",
+  "timezone": "America/Vancouver",
+  "baseline_tests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "final_suite": {
+    "command": "FD001_AZURITE_TESTS=1 python -m pytest -q",
+    "passed": 34,
+    "failed": 0,
+    "skipped": 0,
+    "existing_tests": 16,
+    "new_tests": 18,
+    "actual_azurite_integration_tests": 3
+  },
+  "storage_workflow": {
+    "container": "fd001-model-results",
+    "private": true,
+    "uploaded": 3,
+    "downloaded": 3,
+    "matching_sha256_pairs": 3,
+    "byte_equality_matches": 3,
+    "raw_data_uploaded": false
+  },
+  "versions": {
+    "azure-storage-blob": "12.31.0",
+    "azure-identity": "1.26.0",
+    "azurite": "3.37.0",
+    "service_api": "2023-11-03"
+  },
+  "preservation": {
+    "original_files_checked": 30,
+    "original_file_hashes_unchanged": true,
+    "experiment_retrained": false,
+    "test_metrics": {
+      "mae": 19.6439691067604,
+      "rmse": 27.080285960191667,
+      "mean_error": 11.476510173093883
+    }
+  },
+  "credential_file_mode": "0o600",
+  "real_azure_path": "DefaultAzureCredential constructor wiring unit-tested; actual Entra authentication and cloud operations untested",
+  "checks": [
+    "Private container rejects an actual anonymous request using the supported service API",
+    "Wrong local key rejected with HTTP 403",
+    "Actual corrupt blob transfer detected by verification",
+    "Only three fixed derived artifacts uploaded",
+    "Generated emulator key absent from tracked/intended files"
+  ],
+  "preserved_original_sha256": {
+    "src/evaluation.py": "bd71287992264f2024019bbd04e89cfa34fc22f9ae95cf48cc185e06d82902b8",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/features.py": "4d5e5bd48559fb52f039da14b7bea1faa1512049516be303bebf7bce650f4b74",
+    "src/modeling.py": "7f3c1f4af0926e6093fe99e83bcc74a0659322c8dd7b12825cce4e9bd28561f4",
+    "src/load_data.py": "3a70e5ad914ad33d07744ff7afe3a6149f8d1537d17487cfa9d7dc718cd5a884",
+    "scripts/run_analysis.py": "ce9fb8fd735042409bdf9fce13c7a2de14072e946e9c0c8a16cc36e861f6d392",
+    "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scripts/execute_notebook.py": "cd9378cdc49f84bbe1ae58356778bbb23d57aa6b7b3c65763410e0d2f4911253",
+    "scripts/download_data.py": "c8718a4b02201b05d42a551fb742c5e3c9c9b2795f83283db62cfb9a323ca732",
+    "results/metrics.json": "e21d96d21e8e0ef33795964238a7885e3aaed6208be45959f35a4d7820e45c6e",
+    "results/data_quality.json": "72678095d3c0c6db0370510a9017c4229a9a2c6ab72127cc7c3b79ee0edcd16b",
+    "results/model_comparison.csv": "8aba7b6edf58c671f20e2e346729ba8e39b1ae31c580770993268cb3d0472a16",
+    "results/qa.json": "1394a34cc5844080b56f27659717566aba29bc04ee6cd7648670fe224f7e1206",
+    "results/validation_predictions.csv": "8e7c5ac7ff126d33394bba81f224afcb296388589c3a376c6a6936fb2367ba8d",
+    "results/test_error_by_rul.csv": "8b3b9d525724759dcd304842846f42fbb9024c6e1605cc1256e73ba3c39e21bf",
+    "results/test_predictions.csv": "ee718b5bae3cf057b528949b57c21a1ad43920452f6e6f82d483400fc728bcbc",
+    "results/frozen_method.json": "8b9695000479efc4db25ab342f6037a8a7ba7d801cd93292daa4005383f675b0",
+    "results/sensor_summary.csv": "631841eca38b6c66a336c52331c2fe8e7a6c02fa8cfc95ed2cbca8520a96fe15",
+    "results/data_provenance.json": "735d4058886e2795ac523dce2622249e659535f0972a75299922b5a098067e08",
+    "results/engine_lifetimes.csv": "87e87e2b7682419ff97190fb5e27f2fb7d007bc87beb47d219ee067fe587aa3b",
+    "figures/engine_lifetimes.png": "43f0069816b06f4844fc1f26af26e7e725762750c48da953f1d2763183a1d3ca",
+    "figures/sensor_trends.png": "cd2f21553b27a2d5f743e2e977f28913b6281ad7c9cb5149bfeb056bfae5a985",
+    "figures/prediction_vs_actual.png": "a1cbcbd7786f54998e5701076eb43d01ab29764f23d238fe0ab9fba6d9431268",
+    "figures/prediction_errors.png": "fdc93de12aad92cf5b98b34ab6e469fc17e6faf177637480fb0c29d295530036",
+    "figures/sensor_correlations.png": "5667fb295d6d0c19a38298e91ee5e5051d50781c6fcb1153cd3de5e8ddd7cad6",
+    "figures/degradation_patterns.png": "51b8c7e0ffa3b866a687ed8122e6317a8436630ba14d3665a857ad268a43cdcb",
+    "notebooks/01_fd001_analysis.ipynb": "0d41e9ac0808de1a2313b21eba0e371cb875af43134743b27034d63fbaf3b56d",
+    "tests/conftest.py": "097b23d160559f8956f3062823565b80d006a502edd612314fbd27554f798ad3",
+    "tests/test_data_pipeline.py": "b108cbe05577c18da66f6b55b6dde07e75c4a4c2e71465b30ccce67c8b352789",
+    "tests/test_validation.py": "f5f21b3154d29cfe854ae543503c42c788af32e183d69317c8e623e02bb1edd2"
+  }
+}
