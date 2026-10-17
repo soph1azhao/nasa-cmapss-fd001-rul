@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "date_local": "2026-10-16",
+  "timezone": "America/Vancouver",
+  "environment": "Fresh isolated Python 3.12.14 environment installed from requirements.txt",
+  "download_script": {
+    "command": "python scripts/download_data.py",
+    "exit_code": 0,
+    "source": "official NASA-linked archive"
+  },
+  "analysis_cli": {
+    "command": "python scripts/run_analysis.py",
+    "exit_code": 0
+  },
+  "pytest": {
+    "command": "python -m pytest -q",
+    "exit_code": 0,
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 0.94
+  },
+  "notebook": {
+    "command": "python scripts/execute_notebook.py",
+    "exit_code": 0,
+    "executed_code_cells": 4,
+    "errors": 0,
+    "metrics_equal_cli": true
+  },
+  "method_source_hashes_verified": true,
+  "figure_review": {
+    "png_count": 6,
+    "all_visually_inspected": true
+  },
+  "checks": [
+    "Source/documentation/notebook credential-pattern and absolute personal-path check passed",
+    "Raw data excluded by .gitignore; raw data license not assumed",
+    "No model change or tuning followed official test evaluation"
+  ],
+  "note": "Initial sandbox notebook attempt could not bind local sockets; execution succeeded with local socket access. Deterministic repeats verify the unchanged method, not additional selection rounds."
+}

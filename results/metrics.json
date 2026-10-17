@@ -1,0 +1,39 @@
+{
+  "selected_model": "Histogram gradient boosting",
+  "validation": [
+    {
+      "model": "Histogram gradient boosting",
+      "mae": 24.986148571306458,
+      "rmse": 31.572041571144823,
+      "mean_error": 10.529111251904913
+    },
+    {
+      "model": "Ridge",
+      "mae": 30.316194558988244,
+      "rmse": 35.372239426230806,
+      "mean_error": 20.92918018332792
+    },
+    {
+      "model": "Mean baseline",
+      "mae": 39.76216669878175,
+      "rmse": 46.682757697239985,
+      "mean_error": 27.21371957094225
+    }
+  ],
+  "test": {
+    "mae": 19.6439691067604,
+    "rmse": 27.080285960191667,
+    "mean_error": 11.476510173093883
+  },
+  "test_engines": 100,
+  "validation_engines": 25,
+  "validation_snapshots": 75,
+  "test_evaluations_in_this_run": 1,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2"
+  }
+}
