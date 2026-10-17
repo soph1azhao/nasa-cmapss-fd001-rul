@@ -6,3 +6,8 @@ __pycache__/
 .DS_Store
 *.egg-info/
 .cache/
+
+# Local emulator packages, state and environment credentials.
+node_modules/
+.env
+.env.*

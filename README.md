@@ -63,3 +63,9 @@ The [reproduction guide](docs/technical_analysis.md#reproducibility) provides cl
 Saxena, A. and Goebel, K. (2008). *Turbofan Engine Degradation Simulation Data Set*. NASA Prognostics Data Repository, NASA Ames Research Center. [Official source](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/) · [Dataset details and references](docs/technical_analysis.md#dataset). Raw data are downloaded from the official source and excluded from Git.
 
 Development used **OpenAI Codex for code and documentation assistance**. The executed artifacts, QA evidence, and Git history are retained. [Provenance and interpretation boundaries](docs/technical_analysis.md#development-provenance-and-interpretation-boundaries).
+
+## Azure Blob Storage Extension
+
+**Tested locally using Azurite.** The Azure Python SDK uploads three allowlisted derived artifacts to a private local Blob container, lists and downloads them, and verifies SHA-256 hashes and exact byte equality. **Local emulator verified; real Azure not verified.** No Azure cloud resources were provisioned, and the model was not trained on Azure or deployed to Azure infrastructure. The existing experiment and figures are unchanged.
+
+See the [extension guide](docs/azure_storage_extension.md) for local setup, actual integration-test evidence, generated environment-based credentials, and the future `DefaultAzureCredential` option for an authorized real account.

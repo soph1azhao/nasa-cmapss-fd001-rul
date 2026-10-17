@@ -1,0 +1,38 @@
+{
+  "container": "fd001-model-results",
+  "container_private": true,
+  "listed_blobs": [
+    "figures/prediction_vs_actual.png",
+    "results/metrics.json",
+    "results/model_comparison.csv"
+  ],
+  "artifacts": [
+    {
+      "blob": "results/metrics.json",
+      "bytes": 912,
+      "source_sha256": "e21d96d21e8e0ef33795964238a7885e3aaed6208be45959f35a4d7820e45c6e",
+      "download_sha256": "e21d96d21e8e0ef33795964238a7885e3aaed6208be45959f35a4d7820e45c6e",
+      "bytes_equal": true
+    },
+    {
+      "blob": "results/model_comparison.csv",
+      "bytes": 242,
+      "source_sha256": "8aba7b6edf58c671f20e2e346729ba8e39b1ae31c580770993268cb3d0472a16",
+      "download_sha256": "8aba7b6edf58c671f20e2e346729ba8e39b1ae31c580770993268cb3d0472a16",
+      "bytes_equal": true
+    },
+    {
+      "blob": "figures/prediction_vs_actual.png",
+      "bytes": 71792,
+      "source_sha256": "a1cbcbd7786f54998e5701076eb43d01ab29764f23d238fe0ab9fba6d9431268",
+      "download_sha256": "a1cbcbd7786f54998e5701076eb43d01ab29764f23d238fe0ab9fba6d9431268",
+      "bytes_equal": true
+    }
+  ],
+  "verification_scope": "LOCAL EMULATOR VERIFIED",
+  "real_azure_used": false,
+  "service_api_version": "2023-11-03",
+  "azure_storage_blob_version": "12.31.0",
+  "azure_identity_version": "1.26.0",
+  "azurite_version": "3.37.0"
+}
