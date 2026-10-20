@@ -66,6 +66,8 @@ Development used **OpenAI Codex for code and documentation assistance**. The exe
 
 ## Azure Blob Storage Extension
 
-**Tested locally using Azurite.** The Azure Python SDK uploads three allowlisted derived artifacts to a private local Blob container, lists and downloads them, and verifies SHA-256 hashes and exact byte equality. **Local emulator verified; real Azure not verified.** No Azure cloud resources were provisioned, and the model was not trained on Azure or deployed to Azure infrastructure. The existing experiment and figures are unchanged.
+One controlled real-Azure Blob Storage round trip was verified using Microsoft Entra authentication. Three derived artifacts were uploaded, downloaded, and validated by SHA-256 and exact byte equality. Temporary cloud resources were subsequently deleted.
 
-See the [extension guide](docs/azure_storage_extension.md) for local setup, actual integration-test evidence, generated environment-based credentials, and the future `DefaultAzureCredential` option for an authorized real account.
+Verified October 19, 2026 (Pacific time), in North Central US: **3 uploads, 3 downloads, 72,946 bytes**, anonymous access rejected, and the temporary container-scoped role removed. **45 local tests passed**, including four live Azurite tests. [Sanitized real-Azure evidence](results/azure_storage_verification_real.json) · [Separate Azurite history](results/azure_storage_verification.json).
+
+This was a one-time storage verification. No cloud model training occurred, no production model was deployed, and no persistent Azure application or storage service remains. Original statistical results are unchanged; final billing is pending. The [extension guide](docs/azure_storage_extension.md) covers setup, authentication, tests, cost estimates, cleanup, and limitations.
