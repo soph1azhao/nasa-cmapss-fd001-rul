@@ -8,7 +8,7 @@ from pathlib import Path
 import re
 
 from azure.core.credentials import AzureNamedKeyCredential
-from azure.core.exceptions import ResourceExistsError
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 
@@ -69,13 +69,21 @@ def connect_storage(config):
             credential.close()
 
 
-def private_container(service, name=CONTAINER):
+def private_container(service, name=CONTAINER, *, create=False):
+    """Open an existing private container; creation is opt-in for local Azurite."""
     container = service.get_container_client(name)
+    if create:
+        try:
+            container.create_container(public_access=None)
+        except ResourceExistsError:
+            pass
     try:
-        container.create_container(public_access=None)
-    except ResourceExistsError:
-        pass
-    if container.get_container_properties().get("public_access") not in (None, ""):
+        properties = container.get_container_properties()
+    except ResourceNotFoundError:
+        raise ValueError("The private container does not exist. Pre-create it before the real Azure test.") from None
+    except HttpResponseError:
+        raise ValueError("The container is inaccessible. Check the signed-in identity and container-scoped Blob data permissions.") from None
+    if properties.get("public_access") not in (None, ""):
         raise ValueError("The selected container permits public access; use a private container")
     return container
 
@@ -115,12 +123,12 @@ def verify_bytes(original, downloaded):
             "download_sha256": download_hash, "bytes_equal": True}
 
 
-def round_trip(service, root, output, container_name=CONTAINER):
+def round_trip(service, root, output, container_name=CONTAINER, *, create_container=False):
     root, output = Path(root).resolve(), Path(output).resolve()
     # Download destinations must not overwrite any original artifact.
     if any((output / name).resolve() == (root / name).resolve() for name in ARTIFACTS):
         raise ValueError("Download directory must differ from the original artifact location")
-    container = private_container(service, container_name)
+    container = private_container(service, container_name, create=create_container)
     originals = upload_artifacts(container, root)
     listed = sorted(blob.name for blob in container.list_blobs())
     if not set(ARTIFACTS).issubset(listed):

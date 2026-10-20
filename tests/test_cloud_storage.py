@@ -107,7 +107,7 @@ def test_live_azurite_round_trip_private_and_repeatable(azurite_service, tmp_pat
     before = {name: (ROOT / name).read_bytes() for name in ARTIFACTS}
     try:
         for _ in range(2):
-            report = round_trip(service, ROOT, tmp_path, name)
+            report = round_trip(service, ROOT, tmp_path, name, create_container=True)
             assert report["container_private"] is True
             assert report["listed_blobs"] == sorted(ARTIFACTS)
             assert len(report["artifacts"]) == 3
@@ -128,7 +128,7 @@ def test_live_azurite_corrupt_blob_detected(azurite_service, tmp_path):
     service, _ = azurite_service
     name = "fd001-test-" + uuid.uuid4().hex
     try:
-        container = private_container(service, name)
+        container = private_container(service, name, create=True)
         originals = upload_artifacts(container, ROOT)
         container.upload_blob(name=ARTIFACTS[0], data=originals[ARTIFACTS[0]] + b"corrupt", overwrite=True)
         downloaded = download_artifacts(container, tmp_path)
@@ -146,3 +146,21 @@ def test_live_azurite_wrong_credential_fails(azurite_service):
         with pytest.raises(HttpResponseError) as error:
             service.get_account_information()
         assert error.value.status_code == 403
+
+
+@pytest.mark.azurite
+def test_live_azurite_precreated_container_round_trip_without_creation(azurite_service, tmp_path, monkeypatch):
+    service, _ = azurite_service
+    name = "fd001-test-" + uuid.uuid4().hex
+    try:
+        service.create_container(name, public_access=None)
+        container = service.get_container_client(name)
+        monkeypatch.setattr(service, "get_container_client", lambda requested: container)
+        def forbidden(*args, **kwargs):
+            raise AssertionError("The existing-container path must never request creation")
+        monkeypatch.setattr(container, "create_container", forbidden)
+        report = round_trip(service, ROOT, tmp_path, name)
+        assert report["container_private"]
+        assert all(item["bytes_equal"] and item["source_sha256"] == item["download_sha256"] for item in report["artifacts"])
+    finally:
+        service.delete_container(name)

@@ -1,0 +1,95 @@
+{
+  "verification_date": "2026-10-19",
+  "date_timezone": "America/Vancouver",
+  "verification_scope": "ONE CONTROLLED REAL AZURE BLOB STORAGE ROUND TRIP VERIFIED",
+  "real_azure_used": true,
+  "azurite_evidence": "results/azure_storage_verification.json",
+  "region": "northcentralus",
+  "authentication": "Microsoft Entra / DefaultAzureCredential",
+  "storage": {
+    "kind": "StorageV2",
+    "sku": "Standard_LRS",
+    "access_tier": "Hot",
+    "container": "fd001-model-results",
+    "container_private": true,
+    "shared_key_authorization_enabled": false,
+    "anonymous_blob_access_enabled": false,
+    "blob_data_role_scope": "container only"
+  },
+  "transfers": {
+    "successful_uploads": 3,
+    "successful_downloads": 3,
+    "artifact_count": 3,
+    "total_artifact_bytes": 72946,
+    "sha256_matches": 3,
+    "exact_byte_matches": 3
+  },
+  "artifacts": [
+    {
+      "blob": "results/metrics.json",
+      "bytes": 912,
+      "source_sha256": "e21d96d21e8e0ef33795964238a7885e3aaed6208be45959f35a4d7820e45c6e",
+      "download_sha256": "e21d96d21e8e0ef33795964238a7885e3aaed6208be45959f35a4d7820e45c6e",
+      "bytes_equal": true
+    },
+    {
+      "blob": "results/model_comparison.csv",
+      "bytes": 242,
+      "source_sha256": "8aba7b6edf58c671f20e2e346729ba8e39b1ae31c580770993268cb3d0472a16",
+      "download_sha256": "8aba7b6edf58c671f20e2e346729ba8e39b1ae31c580770993268cb3d0472a16",
+      "bytes_equal": true
+    },
+    {
+      "blob": "figures/prediction_vs_actual.png",
+      "bytes": 71792,
+      "source_sha256": "a1cbcbd7786f54998e5701076eb43d01ab29764f23d238fe0ab9fba6d9431268",
+      "download_sha256": "a1cbcbd7786f54998e5701076eb43d01ab29764f23d238fe0ab9fba6d9431268",
+      "bytes_equal": true
+    }
+  ],
+  "anonymous_access_check": {
+    "service_api_version": "2023-11-03",
+    "http_status": 401,
+    "azure_error_code": "NoAuthenticationInformation",
+    "rejected": true,
+    "authorization_header_sent": false
+  },
+  "local_qa": {
+    "tests": 45,
+    "passed": 45,
+    "failed": 0,
+    "skipped": 0,
+    "live_azurite_tests": 4,
+    "cloud_tests_run_by_pytest": false,
+    "NASA_experiment_rerun": false
+  },
+  "cleanup": {
+    "verified": true,
+    "dedicated_resource_group_deleted": true,
+    "temporary_container_role_removed": true,
+    "dedicated_resources_remaining": 0,
+    "subscription_resources_remaining_at_cleanup_check": 0,
+    "persistent_azure_application_or_storage_service": false
+  },
+  "cost": {
+    "currency": "USD",
+    "estimated_test_cost_less_than": 0.001,
+    "approved_estimated_allowance": 0.01,
+    "enforced_spending_cap": false,
+    "final_billed_cost": "pending; billing may be delayed",
+    "ongoing_test_resource_exposure": "none; deletion verified"
+  },
+  "boundaries": {
+    "one_time_verification": true,
+    "cloud_model_training": false,
+    "production_model_deployed": false,
+    "original_analytical_artifacts_unchanged": true,
+    "committed_azurite_report_unchanged": true
+  },
+  "published_test_metrics": {
+    "mae": 19.6439691067604,
+    "rmse": 27.080285960191667,
+    "mean_error": 11.476510173093883
+  },
+  "evidence_provenance": "Sanitized summary of retained local real-Azure verification JSON and local QA report; raw machine-specific reports are not published."
+}
